@@ -1,0 +1,2 @@
+#include "ECU.h"
+namespace injector_diagnostic {ECU::ECU(std::shared_ptr<OBD> o):obd_(std::move(o)){}bool ECU::connect(){return obd_&&obd_->connect();}void ECU::disconnect()noexcept{if(obd_)obd_->disconnect();}std::vector<std::string> ECU::scan(){return isConnected()?obd_->readDtcCodes():std::vector<std::string>{};}bool ECU::clearFaults(){return obd_&&obd_->clearDtc();}bool ECU::isConnected()const noexcept{return obd_&&obd_->isConnected();}}

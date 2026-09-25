@@ -1,0 +1,2 @@
+#include "SimulationCommunication.h"
+namespace injector_diagnostic {bool SimulationCommunication::open(){open_=true;return true;}void SimulationCommunication::close()noexcept{open_=false;}bool SimulationCommunication::isOpen()const noexcept{return open_;}std::vector<std::uint8_t> SimulationCommunication::request(const std::vector<std::uint8_t>& payload){return open_?payload:std::vector<std::uint8_t>{};}std::string SimulationCommunication::name()const{return "Simulation";}}
